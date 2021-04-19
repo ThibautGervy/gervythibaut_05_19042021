@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orinoco - Votre panier</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../JavaScript/data_2.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <script src="provider.js" defer></script>
+</head>
+
+
+
+<body>
+    <header>
+        <!---------------------------- Navbar ---------------------------------->
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav_bar">
+                        <nav class="nav_element">
+                            <a href="index.html">
+                                <h1>Orinoco</h1>
+                            </a>
+                            <p>Votre Panier :&nbsp;<span> 0</span></p>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page_panier_element">
+                    <h1>Finalisation de votre commande</h1>
+                    <h3>Votre panier...</h3>
+                </div>
+            </div>
+            <div class="tableau_recap">
+                <div class="col-md-3">
+                    <p class="first">Appareil photo</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="second">Objectif</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="third">Quantité</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="fourth">Prix</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="fifth"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="complet">
+                    <p>Total de la commande</p>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <h3 class="title_coordonnees">Vos coordonnées</h3>
+        <p><em>Tous les champs sont obligatoires</em></p>
+        <form class="formulaire_paiement">
+            <p>
+                <label for="firstname">Prénom</label>
+                <input type="text" name="firstname" id="firstname" required>
+            </p>
+            <p>
+                <label for="lastname">Nom</label>
+                <input type="text" name="lastname" id="lastname" required>
+            </p>
+            <p>
+                <label for="address">Adresse</label>
+                <input type="text" name="address" id="address" required>
+            </p>
+            <p>
+                <label for="city">Ville</label>
+                <input type="text" name="city" id="city" required>
+            </p>
+            <p>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            <input type="hidden" name="products" id="products" value="#">
+        </form>
+        <div class="btn_panier">
+            <button type="submit" class="button_passer_commande">Passer la commande</button>
+            <button class="button_cancel">Annuler et vider le panier</button>
+        </div>
+    </div>
+    <div class="container-fluid footer">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="element_footer">
+                    <p>Mentions légales</p>
+                    <p>Contact</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
