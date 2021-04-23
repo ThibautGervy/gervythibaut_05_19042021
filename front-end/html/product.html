@@ -8,6 +8,7 @@
     <title>Orinoco - Page produit</title>
     <link rel="stylesheet" href="../style.css">
     <script src="../javascript/product.js" defer></script>
+    <script src="../javascript/localStorage.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -32,12 +33,35 @@
     </div>
 
     <div class="container-page-produit">
-        <div class="col-md-6">
-            <div class="cart_one">
-                <img alt="Appareil photo vintage" class="image_1" id="img">
-                <div class="element_cart">
-                    <p class="nom" id="nom"></p>
-                    <p class="prix" id="prix"></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card_content">
+                            <img src="" alt="appareil photo" id="img" class="picture_card">
+                            <p class="nom"></p>
+                            <p class="description"></p>
+                            <p class="prix"></p>
+                            <div class="selecteur">
+                                <div class="selecteur_element_1">
+                                    <label for="lentilles">Choisissez une lentille :</label>
+                                    <select id="lentilles">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="button_card">
+                                <div class="button_back">
+                                    <a href="../index.html">
+                                        <input type="button" value="Retourner à l'accueil" class="button_home">
+                                    </a>
+                                </div>
+                                <div class="button_shop add-cart">
+                                    <input type="button" value="Ajouter au panier" class="button_panier">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
