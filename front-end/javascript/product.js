@@ -1,9 +1,9 @@
 "use strict";
+
 // extraction de l'id
-
 const queryString_url_id = window.location.search;
-
 const id = new URLSearchParams(queryString_url_id).get("id");
+
 
 const getProduct = async () => {
     const response = await fetch(`http://localhost:3000/api/cameras/${id}`)
@@ -26,7 +26,7 @@ const displayProduct = async () => {
     const nomElement = document.querySelector(".nom");
     const descriptElement = document.querySelector(".description");
     const prixElement = document.querySelector(".prix");
-    const imgUrlElement = document.querySelector("#img"); 
+    const imgUrlElement = document.querySelector("#img");
     const lensesElement = document.querySelector("#lentilles");
 
 
@@ -37,8 +37,50 @@ const displayProduct = async () => {
     imgUrlElement.src = imageUrl;
 
     for (const lentille of lenses) {
-       lensesElement.innerHTML += `<option>${lentille}</option>`
+        lensesElement.innerHTML += `<option>${lentille}</option>`
     }
+
+
+    // LOCAL STORAGE 
+
+    const envoyerPanier = document.querySelector(".button_panier");
+    const optionsProduit = {
+        name,
+        description,
+        price,
+        imageUrl,
+        lenses
+    }
+
+    envoyerPanier.addEventListener('click', (event) => {
+        let produitStorage = JSON.parse(localStorage.getItem("produit"));
+
+        const messageConfirmation = () => {
+            if (window.confirm(`${name} a bien été ajouté au panier
+Pour consulter votre panier cliquez sur OK sinon ANNULER`)) {
+                window.location.href = "panier.html";
+            } else {
+                window.location.href = "../index.html";
+            }
+        }
+
+        if (produitStorage) {
+            produitStorage.push(optionsProduit);
+            localStorage.setItem("produit", JSON.stringify(produitStorage));
+            messageConfirmation();
+
+
+        } else {
+            produitStorage = [];
+            produitStorage.push(optionsProduit);
+            localStorage.setItem("produit", JSON.stringify(produitStorage));
+            messageConfirmation();
+        }
+
+        event.preventDefault();
+
+    })
+
 }
 
-displayProduct();
+displayProduct()
