@@ -19,7 +19,8 @@ const displayProduct = async () => {
         description,
         price,
         imageUrl,
-        lenses
+        lenses,
+        _id
     } = await getProduct();
 
     // création de variables pour chaque élément de la fiche produit
@@ -28,6 +29,7 @@ const displayProduct = async () => {
     const prixElement = document.querySelector(".prix");
     const imgUrlElement = document.querySelector("#img");
     const lensesElement = document.querySelector("#lentilles");
+    const idElement = document.querySelector(".id")
 
 
     // innerHtml pour chaque variables
@@ -35,6 +37,7 @@ const displayProduct = async () => {
     descriptElement.innerHTML = description;
     prixElement.innerHTML = price / 100 + "€";
     imgUrlElement.src = imageUrl;
+    idElement.innerHTML = `Référence produit : ${_id}`;
 
     for (const lentille of lenses) {
         lensesElement.innerHTML += `<option>${lentille}</option>`
@@ -49,7 +52,8 @@ const displayProduct = async () => {
         description,
         price,
         imageUrl,
-        lenses
+        lenses,
+        _id
     }
 
     envoyerPanier.addEventListener('click', (event) => {
