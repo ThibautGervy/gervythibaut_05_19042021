@@ -18,7 +18,7 @@ if (produitStorage === null) {
         <div class = "container-recapitulatif">
            <div> Nom de l'article : ${produitStorage[k].name}</div>
            <div> Quantité : 1 </div>
-           <div> Prix : ${produitStorage[k].price / 100} € - <button class="btn-supprimer">Supprimer l'article</button></div>
+           <div> Prix : ${produitStorage[k].price / 100} €
         </div>
         `;
     }
@@ -27,8 +27,124 @@ if (produitStorage === null) {
     }
 }
 
-//-------- gestion du boutton supprimer article-------------
 
+//-------- Montal total du panier -------------
+
+let prixTotal = [];
+
+for (let m = 0; m < produitStorage.length; m++) {
+    let prixProduitPanier = produitStorage[m].price;
+
+    prixTotal.push(prixProduitPanier);
+
+}
+
+// additionner les prix avec la méthode reduce
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const prixFinal = prixTotal.reduce(reducer, 0) / 100 + "€";
+
+const affichageTotalPrix = `
+<div class="affichage_prix_total">Le prix total de votre panier est de : ${prixFinal}</div>
+`
+
+positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
+
+
+//-------- Formulaire de commande -------------
+
+const afficherFormulaireHtml = () => {
+    const positionFormulaire = document.querySelector(".container_produit_panier")
+
+    const structureFormulaire = `
+    <h3 class="title_coordonnees">Vos coordonnées</h3>
+        <p><em>Tous les champs sont obligatoires</em></p>
+        <form class="formulaire_paiement">
+            <p>
+                <label for="firstname">Prénom</label>
+                <input type="text" name="firstname" id="firstname" required>
+            </p>
+            <p>
+                <label for="lastname">Nom</label>
+                <input type="text" name="lastname" id="lastname" required>
+            </p>
+            <p>
+                <label for="address">Adresse</label>
+                <input type="text" name="address" id="address" required>
+            </p>
+            <p>
+                <label for="city">Ville</label>
+                <input type="text" name="city" id="city" required>
+            </p>
+            <p>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            <input type="hidden" name="products" id="products" value="#">
+        </form>
+        <div class="btn_panier">
+            <button type="submit" class="button_passer_commande">Passer la commande</button>
+            <button class="button_cancel">Annuler et vider le panier</button>
+        </div>
+    `
+    positionFormulaire.insertAdjacentHTML("afterend", structureFormulaire);
+}
+
+afficherFormulaireHtml();
+
+
+// Récupération des valeurs du formulaire 
+
+const buttonFormulaire = document.querySelector(".button_passer_commande");
+
+buttonFormulaire.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // récupération des valeurs du formulaire
+    const formulaireValues = {
+        prenom: document.querySelector("#firstname").value,
+        nom: document.querySelector("#lastname").value,
+        adresse: document.querySelector("#address").value,
+        ville: document.querySelector("#city").value,
+        email: document.querySelector("#email").value
+    }
+
+    // Mise en place de l'objet dans le local storage 
+    localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
+
+    // Tout dans un objet à envoyer vers le serveur
+    const objetEnvoyer = {
+        produitStorage,
+        formulaireValues
+    }
+
+    // Envoie de l'objet "ObjetEnvoyer" vers le serveur
+    
+})
+
+
+     
+
+
+//-------- Gestion validation formulaire -------------
+
+//const lePrenom = formulaireValues.prenom;
+//if(){
+
+//} else {
+
+//}
+
+
+
+
+
+
+
+
+
+//-------- gestion du boutton supprimer article-------------
+/*
 let buttonSupprimer = document.querySelectorAll(".btn-supprimer");
 
 for (let n = 0; n < buttonSupprimer.length; n++) {
@@ -37,10 +153,6 @@ for (let n = 0; n < buttonSupprimer.length; n++) {
         let idSuppression = produitStorage[n]._id;
         console.log("idSupression");
         console.log(idSupression);
-
-        // méthode filter
-        
-
-
     })
 }
+*/
