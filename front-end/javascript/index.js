@@ -1,7 +1,5 @@
 const url = "http://localhost:3000/api/cameras"
 
-
-
 main()
 
 async function main() {
@@ -12,13 +10,7 @@ async function main() {
     }
 }
 
-
-
-
 function generateCameras() {
-
-    
-
     return fetch(url)
         .then(function (httpBodyResponse) {
             return httpBodyResponse.json()

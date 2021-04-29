@@ -35,7 +35,7 @@ const displayProduct = async () => {
     // innerHtml pour chaque variables
     nomElement.innerHTML = name;
     descriptElement.innerHTML = description;
-    prixElement.innerHTML = price / 100 + "€";
+    prixElement.innerHTML = `Tarif : ${price / 100 + " €"}` ;
     imgUrlElement.src = imageUrl;
     idElement.innerHTML = `Référence produit : ${_id}`;
 

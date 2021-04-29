@@ -1,39 +1,43 @@
-let produitStorage = JSON.parse(localStorage.getItem("produit"));
+let product = JSON.parse(localStorage.getItem("produit"));
 
 const positionElementPanier = document.querySelector(".container-page-panier");
 
-if (produitStorage === null) {
+if (product === null) {
     const panierVide = `
 <div class = "container-panier-vide">
-   <div> Le panier est vide </div>
+   <div> Votre panier est vide... </div>
 </div>`;
     positionElementPanier.innerHTML = panierVide;
 } else {
     let structureProduitPanier = [];
 
-    for (k = 0; k < produitStorage.length; k++) {
+    for (k = 0; k < product.length; k++) {
 
         structureProduitPanier = structureProduitPanier +
             `
         <div class = "container-recapitulatif">
-           <div> Nom de l'article : ${produitStorage[k].name}</div>
+           <div> Article : ${product[k].name}</div>
            <div> Quantité : 1 </div>
-           <div> Prix : ${produitStorage[k].price / 100} €
+           <div> Prix : ${product[k].price / 100} €
+           <br>
+           <br>
+           <!-- <div> Référence : ${product[k]._id} -->
+           
         </div>
         `;
     }
-    if (k == produitStorage.length) {
+    if (k == product.length) {
         positionElementPanier.innerHTML = structureProduitPanier;
-    }
-}
 
+        }
+    }
 
 //-------- Montal total du panier -------------
 
 let prixTotal = [];
 
-for (let m = 0; m < produitStorage.length; m++) {
-    let prixProduitPanier = produitStorage[m].price;
+for (let m = 0; m < product.length; m++) {
+    let prixProduitPanier = product[m].price;
 
     prixTotal.push(prixProduitPanier);
 
@@ -42,10 +46,10 @@ for (let m = 0; m < produitStorage.length; m++) {
 // additionner les prix avec la méthode reduce
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
-const prixFinal = prixTotal.reduce(reducer, 0) / 100 + "€";
+const prixFinal = prixTotal.reduce(reducer, 0) / 100 + " €";
 
 const affichageTotalPrix = `
-<div class="affichage_prix_total">Le prix total de votre panier est de : ${prixFinal}</div>
+<div class="affichage_prix_total">Le prix total de votre panier est de : ${prixFinal}.</div>
 `
 
 positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
@@ -54,11 +58,11 @@ positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
 //-------- Formulaire de commande -------------
 
 const afficherFormulaireHtml = () => {
-    const positionFormulaire = document.querySelector(".container_produit_panier")
+    const positionFormulaire = document.querySelector(".container_formulaire")
 
     const structureFormulaire = `
     <h3 class="title_coordonnees">Vos coordonnées</h3>
-        <p><em>Tous les champs sont obligatoires</em></p>
+        <p class="champs_obligatoires"><em>Tous les champs sont obligatoires</em></p>
         <form class="formulaire_paiement">
             <p>
                 <label for="firstname">Prénom</label>
@@ -83,11 +87,11 @@ const afficherFormulaireHtml = () => {
             <input type="hidden" name="products" id="products" value="#">
         </form>
         <div class="btn_panier">
-            <button type="submit" class="button_passer_commande">Passer la commande</button>
-            <button class="button_cancel">Annuler et vider le panier</button>
+            <button type="submit" class="btn btn-outline-success">Je passe ma commande</button>
         </div>
     `
-    positionFormulaire.insertAdjacentHTML("afterend", structureFormulaire);
+    positionFormulaire.insertAdjacentHTML("afterbegin", structureFormulaire);
+    
 }
 
 afficherFormulaireHtml();
@@ -95,13 +99,13 @@ afficherFormulaireHtml();
 
 // Récupération des valeurs du formulaire 
 
-const buttonFormulaire = document.querySelector(".button_passer_commande");
+const buttonFormulaire = document.querySelector(".btn_passer_commande");
 
 buttonFormulaire.addEventListener('click', (e) => {
     e.preventDefault();
 
     // récupération des valeurs du formulaire
-    const formulaireValues = {
+    const contact = {
         prenom: document.querySelector("#firstname").value,
         nom: document.querySelector("#lastname").value,
         adresse: document.querySelector("#address").value,
@@ -117,7 +121,7 @@ buttonFormulaire.addEventListener('click', (e) => {
 
     // fonction regEx pour prenom, nom & ville
     function controlPrenom() {
-        const lePrenom = formulaireValues.prenom;
+        const lePrenom = contact.prenom;
         if (/^[A-Za-z]{3,20}$/.test(lePrenom)) {
             return true;
         } else {
@@ -127,7 +131,7 @@ buttonFormulaire.addEventListener('click', (e) => {
     }
 
     function controlNom() {
-        const leNom = formulaireValues.nom;
+        const leNom = contact.nom;
         if (/^[A-Za-z]{3,20}$/.test(leNom)) {
             return true;
         } else {
@@ -137,7 +141,7 @@ buttonFormulaire.addEventListener('click', (e) => {
     }
 
     function controlVille() {
-        const laVille = formulaireValues.ville;
+        const laVille = contact.ville;
         if (/^[A-Za-z]{3,20}$/.test(laVille)) {
             return true;
         } else {
@@ -152,8 +156,8 @@ buttonFormulaire.addEventListener('click', (e) => {
         return /^[A-Za-z0-9\s]{5,50}$/.test(value);
     }
 
-    function controlAdresse () {
-        const leAdresse = formulaireValues.adresse;
+    function controlAdresse() {
+        const leAdresse = contact.adresse;
         if (regExAdresse(leAdresse)) {
             return true;
         } else {
@@ -164,19 +168,36 @@ buttonFormulaire.addEventListener('click', (e) => {
 
     if (controlPrenom() && controlNom() && controlVille() && controlAdresse()) {
         // Mise en place de l'objet dans le local storage 
-        localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
+        localStorage.setItem("contact", JSON.stringify(contact));
     } else {
         alert("Veuillez corriger vos erreurs !");
     }
 
-
     // Tout dans un objet à envoyer vers le serveur
     const objetEnvoyer = {
-        produitStorage,
-        formulaireValues
+        products,
+        contact,
     }
-
+    console.log(objetEnvoyer);
     // Envoie de l'objet "ObjetEnvoyer" vers le serveur
+    const promesse = fetch("http://localhost:3000/api/cameras/order", {
+        method: "POST",
+        body: JSON.stringify(objetEnvoyer),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    promesse.then(async (response) => {
+        try {
+            console.log(response);
+            const contenu = await response.json();
+            console.log(contenu);
+        } catch (e) {
+            console.log(e);
+
+        }
+    })
 
 })
 

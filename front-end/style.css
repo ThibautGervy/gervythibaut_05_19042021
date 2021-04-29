@@ -4,11 +4,11 @@
     font-family: 'Nunito', sans-serif;
 }
 
-    
+
 
 body {
     padding: 0;
-    
+
 }
 
 .nav_element {
@@ -20,35 +20,32 @@ body {
 }
 
 .nav_element a {
-    color : black !important;
+    color: black !important;
 }
 
 
-.image_1,
-.image_2,
-.image_3,
-.image_4,
-.image_5 {
+.image {
     width: 100%;
     height: auto;
     border-top-left-radius: 3%;
     border-top-right-radius: 3%;
+    border-bottom-left-radius: 1%;
+    border-bottom-right-radius: 1%;
 }
 
-.cart_one,
-.cart_two,
-.cart_three,
-.cart_four,
-.cart_five {
+.cart_one {
     border: 1px solid black;
     border-top-left-radius: 3%;
     border-top-right-radius: 3%;
     box-shadow: 1px 2px 2px rgba(78, 78, 78, 0.884);
+    margin: auto;
+    margin-bottom: 20px;
 }
 
 .home_background {
     text-align: center;
 }
+
 .home_background h1 {
     font-weight: 700;
     margin-top: 110px;
@@ -72,7 +69,7 @@ body {
     display: flex;
     justify-content: space-around;
     height: 100px;
-    
+
 }
 
 .footer {
@@ -112,9 +109,11 @@ body {
     .nom {
         font-size: 18px !important;
     }
+
     .prix {
         font-size: 15px !important;
     }
+
     .btn_product {
         font-size: 12px;
     }
@@ -127,13 +126,14 @@ body {
 }
 
 .nom {
-    font-size: 25px;
+    font-size: 23px;
     font-weight: 700;
+    margin-top: 10px;
 }
 
 .prix {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .element_cart {
@@ -151,15 +151,27 @@ body {
     border-top-right-radius: 3%;
 }
 
-.card_content{
+.card_content {
     border: 1px solid black;
     border-top-left-radius: 3%;
     border-top-right-radius: 3%;
     margin-top: 20px;
+    box-shadow: 1px 2px 2px rgba(78, 78, 78, 0.884);
 }
 
+.nom,
+.description,
+.prix,
+.selecteur,
+.id {
+    margin-left: 10px;
+    align-items: center;
+}
+
+
+
 .card {
-    border : none !important;
+    border: none !important;
     margin: auto;
 }
 
@@ -179,9 +191,9 @@ body {
 }
 
 .button_card {
-    display : flex;
+    display: flex;
     align-items: center;
-    flex-direction : row;
+    flex-direction: row;
     justify-content: space-around;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -200,8 +212,8 @@ body {
     background-color: rgba(131, 131, 131, 0.973);
 }
 
-.page_panier_element h1{
-    font-size : 32px;
+.page_panier_element h1 {
+    font-size: 32px;
     font-weight: 700;
     margin-top: 50px;
 }
@@ -218,7 +230,11 @@ body {
     text-align: center;
 }
 
-.first, .second, .third, .fourth, .fifth {
+.first,
+.second,
+.third,
+.fourth,
+.fifth {
     font-size: 17px;
     font-weight: 600;
     margin-top: 15px;
@@ -231,15 +247,67 @@ body {
 }
 
 .btn_panier {
-    display : flex;
+    display: flex;
     justify-content: space-around;
+    margin-top: 40px;
 }
 
-.button_passer_commande, .button_cancel {
+.btn_passer_commande {
     padding: 7px;
     border-radius: 0.5em;
     border: 1px solid black;
     margin-bottom: 15px;
-    background-color: rgba(110, 110, 110, 0.973);
-    color: white;
+    text-align: center;
+}
+
+.title_coordonnees {
+    font-size: 22px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.champs_obligatoires {
+    margin-top: 5px;
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.formulaire_paiement {
+    margin-top: 0px;
+    font-size: 15px;
+}
+
+.affichage_prix_total {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.container-recapitulatif {
+    margin-top: 20px;
+}
+
+#firstname{
+    margin-left: 20px;
+}
+
+#lastname {
+    margin-left: 40px;
+}
+
+#lastname {
+    margin-left: 40px;
+}
+
+#address {
+    margin-left: 17px;
+}
+
+#city {
+    margin-left: 40px;
+}
+
+#email {
+    margin-left: 27px;
 }
