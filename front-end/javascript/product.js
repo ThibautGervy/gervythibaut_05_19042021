@@ -55,13 +55,14 @@ const displayProduct = async () => {
         lenses,
         _id
     }
+    console.log(optionsProduit._id);
 
     envoyerPanier.addEventListener('click', (event) => {
         let produitStorage = JSON.parse(localStorage.getItem("produit"));
 
         const messageConfirmation = () => {
             if (window.confirm(`${name} a bien été ajouté au panier
-Pour consulter votre panier cliquez sur OK sinon ANNULER`)) {
+Pour consulter votre panier cliquez sur OK`)) {
                 window.location.href = "panier.html";
             } else {
                 window.location.href = "../index.html";

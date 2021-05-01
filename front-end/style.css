@@ -16,7 +16,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 100px;
+    height: 120px;
 }
 
 .nav_element a {
@@ -69,7 +69,6 @@ body {
     display: flex;
     justify-content: space-around;
     height: 100px;
-
 }
 
 .footer {
@@ -85,7 +84,12 @@ body {
     margin-top: 15px;
 }
 
-
+.container-panier-vide {
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 15px;
+    width: 1320px;
+}
 
 
 
