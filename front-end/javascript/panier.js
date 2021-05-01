@@ -132,4 +132,30 @@ buttonFormulaire.addEventListener('click', (e) => {
         },
     });
 
+    promesse.then(async (response) => {
+        try {
+            const contenu = await response.json();
+            if (response.ok) {
+
+                // récupération de l'id de la response du server;
+                console.log(contenu.orderId);
+
+                // mettre l'id dans le local storage
+                localStorage.setItem("orderID", contenu.orderId);
+
+                //renvoie vers la page confirmation commande 
+                window.location = "../html/confirmation.html"
+
+
+            } else {
+                alert("Il y a un problème")
+            }
+
+        } catch (e) {
+            console.log(e);
+        }
+    })
+
+
+
 })

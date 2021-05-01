@@ -71,6 +71,11 @@ body {
     height: 100px;
 }
 
+.gras {
+    font-weight: 900;
+}
+
+
 .footer {
     margin-top: 70px;
 }
@@ -314,4 +319,9 @@ body {
 
 #email {
     margin-left: 27px;
+}
+
+.recapCommande {
+    font-size: 19px;
+    margin-top: 25px;
 }
