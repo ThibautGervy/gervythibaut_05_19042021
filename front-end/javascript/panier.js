@@ -1,7 +1,10 @@
+// Création de la clé produit dans le local storage
 let produitStorage = JSON.parse(localStorage.getItem("produit"));
 
+// Container de la page panier
 const positionElementPanier = document.querySelector(".container-page-panier");
 
+// Condition de l'affichage du panier (vide ou plein)
 if (produitStorage === null) {
     const panierVide = `
 <div class = "container-panier-vide col-xs-12">
@@ -27,8 +30,7 @@ if (produitStorage === null) {
 }
 
 
-//-------- Montal total du panier -------------
-
+// Montant total du panier
 let prixTotal = [];
 
 for (let m = 0; m < produitStorage.length; m++) {
@@ -39,7 +41,6 @@ for (let m = 0; m < produitStorage.length; m++) {
 }
 
 // additionner les prix avec la méthode reduce
-
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 const prixFinal = prixTotal.reduce(reducer, 0) / 100 + "€";
 
@@ -51,6 +52,7 @@ positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
 
 //-------- Formulaire de commande -------------
 
+// affichage du formulaire 
 const afficherFormulaireHtml = () => {
     const positionFormulaire = document.querySelector(".container_formulaire")
 
@@ -89,7 +91,7 @@ const afficherFormulaireHtml = () => {
 
 afficherFormulaireHtml();
 
-// Tableau products à envoyer 
+// Tableau "products" à envoyer dans l'objet "objetEnvoyer"
 const products = [];
 for (x = 0; x < produitStorage.length; x++) {
     produitStorage[x]._id;
@@ -97,7 +99,6 @@ for (x = 0; x < produitStorage.length; x++) {
 }
 
 // Récupération des valeurs du formulaire 
-
 const buttonFormulaire = document.querySelector(".btn-outline-success");
 
 buttonFormulaire.addEventListener('click', (e) => {

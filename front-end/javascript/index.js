@@ -1,3 +1,4 @@
+// Affichage des produits sur la page index
 const url = "http://localhost:3000/api/cameras"
 
 main()
@@ -23,6 +24,7 @@ function generateCameras() {
         })
 }
 
+// Clonage des différents éléments de camera
 function displayCamera(camera) {
     const templateElt = document.getElementById("templateCamera")
     const cloneElt = document.importNode(templateElt.content, true)

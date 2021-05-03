@@ -4,14 +4,14 @@
 const queryString_url_id = window.location.search;
 const id = new URLSearchParams(queryString_url_id).get("id");
 
-
+// fetch des produits
 const getProduct = async () => {
     const response = await fetch(`http://localhost:3000/api/cameras/${id}`)
     const camera = await response.json();
     return camera;
 }
 
-
+// fonction d'affiche des produits
 const displayProduct = async () => {
     // destructuration de l'objet 
     const {
@@ -45,7 +45,6 @@ const displayProduct = async () => {
 
 
     // LOCAL STORAGE 
-
     const envoyerPanier = document.querySelector(".button_panier");
     const optionsProduit = {
         name,
@@ -57,6 +56,7 @@ const displayProduct = async () => {
     }
     console.log(optionsProduit._id);
 
+    // ajout du produit au panier à l'écoute du click 
     envoyerPanier.addEventListener('click', (event) => {
         let produitStorage = JSON.parse(localStorage.getItem("produit"));
 
