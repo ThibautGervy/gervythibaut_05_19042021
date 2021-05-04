@@ -3,12 +3,13 @@ const url = "http://localhost:3000/api/cameras"
 
 main()
 
+
 async function main() {
     const cameras = await generateCameras()
 
     for (camera of cameras) {
         displayCamera(camera)
-    }
+    } 
 }
 
 function generateCameras() {
@@ -24,6 +25,7 @@ function generateCameras() {
         })
 }
 
+
 // Clonage des différents éléments de camera
 function displayCamera(camera) {
     const templateElt = document.getElementById("templateCamera")
@@ -34,8 +36,11 @@ function displayCamera(camera) {
     cloneElt.querySelector(".prix").textContent = camera.price / 100 + " €"
     cloneElt.querySelector("#lienProduit").href = `./html/product.html?id=${camera._id}`
     
-    document.getElementById("main").appendChild(cloneElt)
+    document.getElementById("main").appendChild(cloneElt);
 }
+
+
+
 
 
 

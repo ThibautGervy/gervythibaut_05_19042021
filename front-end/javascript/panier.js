@@ -53,7 +53,7 @@ positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
 //-------- Formulaire de commande -------------
 
 // affichage du formulaire 
-const afficherFormulaireHtml = () => {
+const displayFormHtml = () => {
     const positionFormulaire = document.querySelector(".container_formulaire")
 
     const structureFormulaire = `
@@ -89,7 +89,7 @@ const afficherFormulaireHtml = () => {
     positionFormulaire.insertAdjacentHTML("afterbegin", structureFormulaire);
 }
 
-afficherFormulaireHtml();
+displayFormHtml();
 
 // Tableau "products" à envoyer dans l'objet "objetEnvoyer"
 const products = [];

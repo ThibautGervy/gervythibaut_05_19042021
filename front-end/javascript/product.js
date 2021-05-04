@@ -9,7 +9,9 @@ const getProduct = async () => {
     const response = await fetch(`http://localhost:3000/api/cameras/${id}`)
     const camera = await response.json();
     return camera;
+    
 }
+
 
 // fonction d'affiche des produits
 const displayProduct = async () => {
