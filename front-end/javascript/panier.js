@@ -117,6 +117,71 @@ buttonFormulaire.addEventListener('click', (e) => {
     // Mise en place de l'objet dans le local storage 
     localStorage.setItem("contact", JSON.stringify(contact));
 
+    //-------- Gestion validation formulaire -------------
+    const textAlert = (value) => {
+        return `${value} : cette case est mal remplie !`
+
+    }
+
+    // fonction regEx pour prenom, nom & ville
+    function controlPrenom() {
+        const lePrenom = contact.firstName;
+        if (/^[A-Za-z]{3,20}$/.test(lePrenom)) {
+            return true;
+        } else {
+            alert(textAlert("Prénom"))
+            return false;
+        };
+    }
+
+    function controlNom() {
+        const leNom = contact.lastName;
+        if (/^[A-Za-z]{3,20}$/.test(leNom)) {
+            return true;
+        } else {
+            alert(textAlert("Nom"))
+            return false;
+        };
+    }
+
+    function controlVille() {
+        const laVille = contact.city;
+        if (/^[A-Za-z]{3,20}$/.test(laVille)) {
+            return true;
+        } else {
+            alert(textAlert("Ville"))
+            return false;
+        };
+    }
+
+    // fonction regEx pour adresse
+
+    const regExAdresse = (value) => {
+        return /^[A-Za-z0-9\s]{5,50}$/.test(value);
+    }
+
+    function controlAdresse() {
+        const leAdresse = contact.address;
+        if (regExAdresse(leAdresse)) {
+            return true;
+        } else {
+            alert(textAlert("Adresse"))
+            return false;
+        };
+    }
+
+    // fonction regEx pour e-mail 
+
+    function controlEmail() {
+        const Lemail = contact.email;
+        if (/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i.test(Lemail)) {
+            return true;
+        } else {
+            alert(textAlert("Email"))
+            return false;
+        }
+    }
+
     // Tout dans un objet à envoyer vers le serveur
     const objetEnvoyer = {
         contact,
@@ -124,38 +189,50 @@ buttonFormulaire.addEventListener('click', (e) => {
     }
     console.log(objetEnvoyer);
 
-    // Envoie de l'objet "ObjetEnvoyer" vers le serveur
-    const promesse = fetch("http://localhost:3000/api/cameras/order", {
-        method: "POST",
-        body: JSON.stringify(objetEnvoyer),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+    if (controlPrenom() && controlNom() && controlVille() && controlAdresse() && controlEmail()) {
 
-    promesse.then(async (response) => {
-        try {
-            const contenu = await response.json();
-            if (response.ok) {
+        // Mise en place de l'objet dans le local storage 
+        localStorage.setItem("contact", JSON.stringify(contact));
 
-                // récupération de l'id de la response du server;
-                console.log(contenu.orderId);
+        // Envoie de l'objet "ObjetEnvoyer" vers le serveur
+        const promesse = fetch("http://localhost:3000/api/cameras/order", {
+            method: "POST",
+            body: JSON.stringify(objetEnvoyer),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
-                // mettre l'id dans le local storage
-                localStorage.setItem("orderID", contenu.orderId);
+        promesse.then(async (response) => {
+            try {
+                const contenu = await response.json();
+                if (response.ok) {
 
-                //renvoie vers la page confirmation commande 
-                window.location = "../html/confirmation.html"
+                    // récupération de l'id de la response du server;
+                    console.log(contenu.orderId);
+
+                    // mettre l'id dans le local storage
+                    localStorage.setItem("orderID", contenu.orderId);
+
+                    //renvoie vers la page confirmation commande 
+                    window.location = "../html/confirmation.html"
 
 
-            } else {
-                alert("Il y a un problème")
+                } else {
+                    alert("Il y a un problème")
+                }
+
+            } catch (e) {
+                console.log(e);
             }
+        })
+    } else {
+        alert("Veuillez corriger vos erreurs !");
+    }
 
-        } catch (e) {
-            console.log(e);
-        }
-    })
+    
+
+
 
 
 
