@@ -216,8 +216,6 @@ buttonFormulaire.addEventListener('click', (e) => {
 
                     //renvoie vers la page confirmation commande 
                     window.location = "../html/confirmation.html"
-
-
                 } else {
                     alert("Il y a un problème")
                 }
@@ -229,11 +227,4 @@ buttonFormulaire.addEventListener('click', (e) => {
     } else {
         alert("Veuillez corriger vos erreurs !");
     }
-
-    
-
-
-
-
-
 })
