@@ -1,3 +1,4 @@
+"use strict";
 // Création de la clé produit dans le local storage
 let produitStorage = JSON.parse(localStorage.getItem("produit"));
 
@@ -7,15 +8,15 @@ const positionElementPanier = document.querySelector(".container-page-panier");
 // Condition de l'affichage du panier (vide ou plein)
 if (produitStorage === null) {
     const panierVide = `
-<div class = "container-panier-vide col-xs-12">
+<div class="container-panier-vide col-xs-12">
    <div> Le panier est vide </div>
 </div>`;
     positionElementPanier.innerHTML = panierVide;
 } else {
     let structureProduitPanier = [];
-
-    for (k = 0; k < produitStorage.length; k++) {
-        structureProduitPanier = structureProduitPanier +
+    let k;
+    for (let k = 0; k < produitStorage.length; k++) {
+        positionElementPanier.innerHTML += 
             `
         <div class = "container-recapitulatif">
            <div> Nom de l'article : ${produitStorage[k].name}</div>
@@ -23,9 +24,6 @@ if (produitStorage === null) {
            <div> Prix : ${produitStorage[k].price / 100} €
         </div>
         `;
-    }
-    if (k === produitStorage.length) {
-        positionElementPanier.innerHTML = structureProduitPanier;
     }
 }
 
@@ -54,45 +52,16 @@ positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
 
 // affichage du formulaire 
 const displayFormHtml = () => {
-    const positionFormulaire = document.querySelector(".container_formulaire")
-
-    const structureFormulaire = `
-    <h3 class="title_coordonnees">Vos coordonnées</h3>
-        <p><em>Tous les champs sont obligatoires</em></p>
-        <form class="formulaire_paiement">
-            <p>
-                <label for="firstname">Prénom</label>
-                <input type="text" name="firstname" id="firstname" required>
-            </p>
-            <p>
-                <label for="lastname">Nom</label>
-                <input type="text" name="lastname" id="lastname" required>
-            </p>
-            <p>
-                <label for="address">Adresse</label>
-                <input type="text" name="address" id="address" required>
-            </p>
-            <p>
-                <label for="city">Ville</label>
-                <input type="text" name="city" id="city" required>
-            </p>
-            <p>
-                <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" required>
-            </p>
-            <input type="hidden" name="products" id="products" value="#">
-        </form>
-        <div class="btn_panier">
-            <button type="submit" class="btn btn-outline-success">Je passe ma commande</button>
-        </div>
-    `
-    positionFormulaire.insertAdjacentHTML("afterbegin", structureFormulaire);
+    const positionFormulaire = document.querySelector(".container_formulaire");
+    const structureFormulaire = document.querySelector(".container_formulaire");
 }
 
+positionFormulaire.innerHTML(structureFormulaire);
 displayFormHtml();
 
 // Tableau "products" à envoyer dans l'objet "objetEnvoyer"
 const products = [];
+let x;
 for (x = 0; x < produitStorage.length; x++) {
     produitStorage[x]._id;
     products.push(produitStorage[x]._id);
@@ -201,6 +170,7 @@ buttonFormulaire.addEventListener('click', (e) => {
             headers: {
                 "Content-Type": "application/json",
             },
+            
         });
 
         promesse.then(async (response) => {
