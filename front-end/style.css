@@ -90,10 +90,9 @@ body {
 }
 
 .container-panier-vide {
-    font-size: 19px;
+    font-size: 22px;
     font-weight: bold;
-    margin-top: 15px;
-    width: 1320px;
+    margin-top: 100px;
 }
 
 

@@ -9,7 +9,7 @@ const positionElementPanier = document.querySelector(".container-page-panier");
 if (produitStorage === null) {
     const panierVide = `
 <div class="container-panier-vide col-xs-12">
-   <div> Le panier est vide </div>
+   <div> Votre panier est vide !</div>
 </div>`;
     positionElementPanier.innerHTML = panierVide;
 } else {
@@ -33,9 +33,7 @@ let prixTotal = [];
 
 for (let m = 0; m < produitStorage.length; m++) {
     let prixProduitPanier = produitStorage[m].price;
-
     prixTotal.push(prixProduitPanier);
-
 }
 
 // additionner les prix avec la méthode reduce
@@ -54,10 +52,11 @@ positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
 const displayFormHtml = () => {
     const positionFormulaire = document.querySelector(".container_formulaire");
     const structureFormulaire = document.querySelector(".container_formulaire");
+    //positionFormulaire.insertAdjacentHTML("beforeend", structureFormulaire);
 }
 
-positionFormulaire.innerHTML(structureFormulaire);
 displayFormHtml();
+
 
 // Tableau "products" à envoyer dans l'objet "objetEnvoyer"
 const products = [];
