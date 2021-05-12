@@ -9,7 +9,7 @@ const prixFinal = localStorage.getItem("prixFinal");
 const positionElementConfirmation = document.querySelector(".container-recapitulatif-commande");
 
 // sélection élement du DOM pour le positionnement 
-//localStorage.clear();
+localStorage.clear();
 const structureConfirmation = `
 <div class="recapCommande text-center">
         <p>Votre commande n°<span class="gras">${orderID}</span> a bien été enregistrée. </p>
@@ -20,8 +20,3 @@ const structureConfirmation = `
 
 // injection HTML 
 positionElementConfirmation.insertAdjacentHTML("afterbegin", structureConfirmation);
-
-
-
-
-

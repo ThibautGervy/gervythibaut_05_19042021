@@ -9,7 +9,6 @@ const getProduct = async () => {
     const response = await fetch(`http://localhost:3000/api/cameras/${id}`)
     const camera = await response.json();
     return camera;
-    
 }
 
 
@@ -37,7 +36,7 @@ const displayProduct = async () => {
     // innerHtml pour chaque variables
     nomElement.innerHTML = name;
     descriptElement.innerHTML = description;
-    prixElement.innerHTML = `Tarif : ${price / 100 + " €"}` ;
+    prixElement.innerHTML = `Tarif : ${price / 100 + " €"}`;
     imgUrlElement.src = imageUrl;
     idElement.innerHTML = `Référence produit : ${_id}`;
 

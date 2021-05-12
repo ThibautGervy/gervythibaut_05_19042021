@@ -1,4 +1,3 @@
-
 // Affichage des produits sur la page index
 const url = "http://localhost:3000/api/cameras"
 
@@ -10,7 +9,7 @@ async function main() {
 
     for (camera of cameras) {
         displayCamera(camera)
-    } 
+    }
 }
 
 function generateCameras() {
@@ -36,15 +35,6 @@ function displayCamera(camera) {
     cloneElt.querySelector(".nom").textContent = camera.name
     cloneElt.querySelector(".prix").textContent = camera.price / 100 + " €"
     cloneElt.querySelector("#lienProduit").href = `./html/product.html?id=${camera._id}`
-    
+
     document.getElementById("main").appendChild(cloneElt);
 }
-
-
-
-
-
-
-
-
-
