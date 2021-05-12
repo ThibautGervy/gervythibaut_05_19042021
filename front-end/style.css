@@ -113,6 +113,17 @@ body {
     }
 }
 
+@media (max-width: 700px) {
+    .cart_one {
+        width: auto !important;
+    }
+
+    .card_content {
+        width: auto;
+        margin: auto;
+    }
+}
+
 @media (max-width: 1024px) {
     .nom {
         font-size: 18px !important;
@@ -124,6 +135,13 @@ body {
 
     .btn_product {
         font-size: 12px;
+    }
+}
+
+@media (min-width : 1024px) {
+    .card_content {
+        width: 35rem;
+        margin: auto;
     }
 }
 
@@ -296,7 +314,7 @@ body {
     margin-top: 20px;
 }
 
-#firstname{
+#firstname {
     margin-left: 20px;
 }
 
