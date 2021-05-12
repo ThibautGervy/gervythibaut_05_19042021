@@ -16,7 +16,7 @@ if (produitStorage === null) {
     let structureProduitPanier = [];
     let k;
     for (let k = 0; k < produitStorage.length; k++) {
-        positionElementPanier.innerHTML += 
+        positionElementPanier.innerHTML +=
             `
         <div class = "container-recapitulatif">
            <div> Nom de l'article : ${produitStorage[k].name}</div>
@@ -45,6 +45,9 @@ const affichageTotalPrix = `
 `
 
 positionElementPanier.insertAdjacentHTML("beforeend", affichageTotalPrix);
+
+//Mise en place du prixFinal de le local storage
+localStorage.setItem("prixFinal", JSON.stringify(prixFinal));
 
 //-------- Formulaire de commande -------------
 
@@ -150,6 +153,8 @@ buttonFormulaire.addEventListener('click', (e) => {
         }
     }
 
+
+
     // Tout dans un objet à envoyer vers le serveur
     const objetEnvoyer = {
         contact,
@@ -162,6 +167,7 @@ buttonFormulaire.addEventListener('click', (e) => {
         // Mise en place de l'objet dans le local storage 
         localStorage.setItem("contact", JSON.stringify(contact));
 
+
         // Envoie de l'objet "ObjetEnvoyer" vers le serveur
         const promesse = fetch("http://localhost:3000/api/cameras/order", {
             method: "POST",
@@ -169,7 +175,7 @@ buttonFormulaire.addEventListener('click', (e) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            
+
         });
 
         promesse.then(async (response) => {
